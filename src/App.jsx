@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
-
+import UseEffects from './components/UseEffects'
+import Catfacts from './components/Catfacts'
+import Events from './components/Events'
 const App = () => {
   const [count, setCount] = useState(0)
   const counter = () => {
-    setCount(prev=> {
-      if (prev === 20){
+    setCount(prev => {
+      if (prev === 20) {
         alert(`counter is already set to ${count}`)
       }
       return prev + 1
@@ -27,12 +29,15 @@ const App = () => {
   const [cover, setCover] = useState(false)
   return (
     <div>
+      <UseEffects />
+      <Catfacts/>
+      <Events />
       <button onClick={counter}>increase</button>
       <button>{count}</button>
       <button onClick={Reduce}>decrease</button>
       <div>
         <h1 style={{ backgroundColor: color, color: "white" }}>My favorite color is {color}</h1>
-        <button onClick={()=> setColor(prev => prev === "red"? "blue":"red")}>Change Color</button>
+        <button onClick={() => setColor(prev => prev === "red" ? "blue" : "red")}>Change Color</button>
       </div>
       <h1>My name is {name}</h1>
       <button onClick={nameChange}>change Name</button>

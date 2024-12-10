@@ -25,4 +25,46 @@
     opacity: 1; /* Make the text visible */
     transform: scale(1); /* Scale the text to its original size */
   }
-  
+  /* Basic styles for the skeleton container */
+.skeleton-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+}
+
+/* Common styles for the skeleton elements */
+.skeleton {
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* Skeleton Text (representing paragraphs) */
+.skeleton-text {
+  height: 20px;
+  width: 80%;
+  margin-bottom: 10px;
+}
+
+/* Skeleton Image (representing an image or card) */
+.skeleton-image {
+  height: 200px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+/* Animation to make the skeleton pulse */
+@keyframes pulse {
+  0% {
+    background-color: #e0e0e0;
+  }
+  50% {
+    background-color: #ccc;
+  }
+  100% {
+    background-color: #e0e0e0;
+  }
+}
