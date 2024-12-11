@@ -2,6 +2,14 @@ import React, { useEffect, useState } from 'react'
 import UseEffects from './components/UseEffects'
 import Catfacts from './components/Catfacts'
 import Events from './components/Events'
+import Axios from './components/Axios'
+import { QueryClient,QueryClientProvider } from '@tanstack/react-query'
+
+const client = new QueryClient ({
+  defaultOptions : {
+    refetchWindowsFocus : false
+  }
+}) 
 const App = () => {
   const [count, setCount] = useState(0)
   const counter = () => {
@@ -28,10 +36,12 @@ const App = () => {
   const nameChange = () => { setName(name === "Muhammed" ? "Habeeb" : "Muhammed") }
   const [cover, setCover] = useState(false)
   return (
+    <QueryClientProvider client={client}>
     <div>
-      <UseEffects />
-      <Catfacts/>
-      <Events />
+      {/* <UseEffects /> */}
+      {/* <Catfacts/> */}
+      {/* <Events /> */}
+      <Axios/>
       <button onClick={counter}>increase</button>
       <button>{count}</button>
       <button onClick={Reduce}>decrease</button>
@@ -46,6 +56,7 @@ const App = () => {
       {cover ? <p>hello world</p> : null}
       <button onClick={() => setCover(prev => !prev)}>{cover ? "Hide" : "Display"} Text</button>
     </div>
+    </QueryClientProvider>
   )
 }
 
