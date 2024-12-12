@@ -3,6 +3,11 @@ import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 
 const Axios = () => {
+    const [selectedOption, setSelectedOption] = useState('');
+
+    const handleSelectChange = (event) => {
+        setSelectedOption(event.target.value); // Update state with selected option
+    };
     const [input, setInput] = useState('')
 
     const { data: User, isLoading, isError, refetch } = useQuery(
@@ -27,6 +32,9 @@ const Axios = () => {
     if (isError) {
         return <h1>Error fetching data</h1>
     }
+    const handleInputChange = (e) => {
+        setInput(e.target.value)
+    }
     return (
         <div>
             {
@@ -47,8 +55,12 @@ const Axios = () => {
                 onChange={handleInputChange}
             />
             <button onClick={refetch}>refetch</button>
+            <select value={selectedOption} onChange={handleSelectChange}>
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+            </select>
         </div>
     )
-};
+}
 
 export default Axios;
