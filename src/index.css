@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Add basic styles */
 .heading {
     font-size: 2rem;

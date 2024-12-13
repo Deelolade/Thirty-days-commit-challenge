@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import '../css/genderize.css'
 import { IoSearchSharp } from "react-icons/io5";
 import { MdCancel } from "react-icons/md";
 import { FcCancel } from "react-icons/fc";
@@ -25,31 +24,43 @@ const Genderize = () => {
     };
 
     return (
-        <div className='form-container d-flex justify-content-center align-items-center '>
-            <div className='form d-flex justify-content-center align-items-center shadow shadow-5   '>
-                <div className="">
-                    <div className="form-top text-center justify-content-between">
-                        <h1 className='fs-1 fw-bolder'>Check the Gender of a Name</h1>
-                        <div className=" d-flex justify-content-evenly top mx-auto my-4">
+        <div className='flex justify-center items-center min-h-screen bg-gray-100'>
+            <div className='flex justify-center items-center shadow-lg p-8 rounded-lg bg-white w-full max-w-lg'>
+                <div className="text-center w-full">
+                    <div className="form-top mb-6">
+                        <h1 className='text-3xl font-bold mb-4'>Check the Gender of a Name</h1>
+                        <div className="flex justify-evenly mx-auto mb-4">
                             <input
                                 type="text"
                                 value={input}
                                 onChange={(e) => setInput(e.target.value)}
                                 placeholder="Enter a name"
-                                className='px-3  py-3 shadow shadow-4 rounded-1'
+                                className='px-4 py-3 shadow-md rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500'
                             />
-                            <button onClick={apiFetch} type='button' className='btn btn-warning rounded-3 px-3'><IoSearchSharp className='text-white fs-4 icon' /></button>
+                            <button 
+                                onClick={apiFetch} 
+                                type='button' 
+                                className='bg-yellow-500 text-white rounded-md px-4 py-3 hover:bg-yellow-400 transition duration-300'
+                            >
+                                <IoSearchSharp className='text-2xl' />
+                            </button>
                         </div>
-                        {error && <div style={{ color: 'blue' }}>{error}</div>} {/* Display error message in red */}
+                        {error && <div className="text-red-500">{error}</div>}
                     </div>
                     {input && gender && (
                         <div>
-                            <h1 className='fs-4 text-center'>My name is {gender.name}, and I proudly identify as {gender.gender}.</h1>
+                            <h1 className='text-lg text-center mb-4'>
+                                My name is {gender.name}, and I proudly identify as {gender.gender}.
+                            </h1>
                         </div>
                     )}
-                    <div className="button d-flex justify-content-evenly mt-5 mx-auto ">
-                        <button className=' ' onClick={() => setGender(null)}><FcCancel className=' fs-2 icon' /></button>
-                        <button className='' onClick={() => setInput('')}><MdCancel className=' fs-2 icon' /></button>
+                    <div className="button flex justify-evenly mt-4">
+                        <button onClick={() => setGender(null)} className='text-2xl'>
+                            <FcCancel />
+                        </button>
+                        <button onClick={() => setInput('')} className='text-2xl'>
+                            <MdCancel />
+                        </button>
                     </div>
                 </div>
             </div>
