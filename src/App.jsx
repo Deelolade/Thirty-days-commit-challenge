@@ -19,7 +19,7 @@ const App = () => {
     <div>
       {/* <State/> */}
       {/* <UseEffects /> */}
-      {/* <Catfacts/> */}
+      <Catfacts/>
       {/* <Events /> */}
       {/* <Axios/> */}
       {/* <Intervals/> */}
