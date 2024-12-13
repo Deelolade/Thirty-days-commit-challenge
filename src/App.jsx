@@ -7,6 +7,7 @@ import { QueryClient,QueryClientProvider } from '@tanstack/react-query'
 import Intervals from './components/Intervals'
 import Genderize from './components/Genderize'
 import State from './components/State'
+import Agify from './components/Agify'
 
 const client = new QueryClient ({
   defaultOptions : {
@@ -23,7 +24,8 @@ const App = () => {
       {/* <Events /> */}
       {/* <Axios/> */}
       {/* <Intervals/> */}
-      <Genderize/>
+      {/* <Genderize/> */}
+      <Agify/>
       </div>
     </QueryClientProvider>
   )
