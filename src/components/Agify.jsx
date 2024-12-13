@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-import '../css/Agify.css'
-import { useQuery } from '@tanstack/react-query'
+import React, { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { IoSearchSharp } from "react-icons/io5";
 import Axios from 'axios';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+
 const Agify = () => {
-    const [inputValue, setInputValue] = useState('')
+    const [inputValue, setInputValue] = useState('');
     const { data: UserAge, isLoading, isError, refetch } = useQuery({
         queryKey: ["users", inputValue],
         queryFn: async () => {
@@ -21,12 +21,13 @@ const Agify = () => {
         },
         enabled: false,
         onSuccess: (data) => {
-            console.log("Data fetched successfully", data)
+            console.log("Data fetched successfully", data);
         },
         onError: (error) => {
-            console.log("Data not fetched ", error)
+            console.log("Data not fetched", error);
         }
-    })
+    });
+
     const handleSubmit = () => {
         if (!inputValue) {
             alert('Please enter a name');
@@ -34,41 +35,49 @@ const Agify = () => {
         }
         refetch(); // Trigger the query
     };
+
     return (
-        <div className='container fluid d-flex'>
-            <div className="main-container d-flex bg-white shadow shadow-5">
-                <h1 className='fw-bolder  mb-3 text-center'>Estimate the Age <br /> of a Name</h1>
-                <div className="top d-flex justify-content-center">
-                    <input type="text"
-                        value={inputValue}
-                        placeholder='First or  full name'
-                        onChange={(e) => setInputValue(e.target.value)}
-                        className='bg-light px-4 py-3 shadow shadowed mx-3'
+        <div className="flex justify-center items-center min-h-screen bg-gray-100">
+            <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
+                <h1 className="text-2xl font-extrabold text-center mb-6">Estimate the Age <br /> of a Name</h1>
+                <div className="flex justify-center mb-4">
+                    <input 
+                        type="text" 
+                        value={inputValue} 
+                        placeholder="First or full name" 
+                        onChange={(e) => setInputValue(e.target.value)} 
+                        className="bg-gray-100 p-3 rounded-md w-full shadow-md focus:outline-none focus:ring-2 focus:ring-green-400"
                     />
-                    <button onClick={handleSubmit} className='btn btn-success'>
-                        <IoSearchSharp className='text-white fs-4 icon ' />
+                    <button 
+                        onClick={handleSubmit} 
+                        className="bg-green-500 hover:bg-green-600 text-white p-3 rounded-md ml-2 shadow-md flex items-center justify-center"
+                    >
+                        <IoSearchSharp className="text-white text-xl" />
                     </button>
                 </div>
                 {isLoading ? (
-                    <div className='mt-4'>
+                    <div className="mt-4">
                         {/* Show skeleton loader */}
                         <Skeleton height={30} width={300} />
                     </div>
                 ) : UserAge ? (
-                    <div className="text-center fs-5 mt-4">
-                        <p>The predicted age for <span className='fw-bolder text-decoration-underline text-success'>{inputValue}</span> is <span className='fw-bolder text-decoration-underline text-success'>{UserAge.age}</span>, <br />based on <span className='fw-bolder text-decoration-underline text-success'>{UserAge.count}</span> people with this name.</p>
+                    <div className="text-center text-lg mt-4">
+                        <p>The predicted age for <span className="font-bold underline text-green-600">{inputValue}</span> is 
+                            <span className="font-bold underline text-green-600"> {UserAge.age}</span>, <br />
+                            based on <span className="font-bold underline text-green-600">{UserAge.count}</span> people with this name.
+                        </p>
                     </div>
                 ) : (
                     isError && (
-                        <div>
-                            <h1>Error</h1>
+                        <div className="mt-4">
+                            <h1 className="text-red-600 text-xl font-bold">Error</h1>
                             <p>Something went wrong while fetching the data.</p>
                         </div>
                     )
                 )}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Agify
+export default Agify;

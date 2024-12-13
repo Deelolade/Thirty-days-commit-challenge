@@ -1,4 +1,4 @@
-/** @type {import('tailwindcss').Config} */
+// /** @type {import('tailwindcss').Config} */
 module.exports = {
   important: true, // All Tailwind classes will have higher specificity
   content: [
