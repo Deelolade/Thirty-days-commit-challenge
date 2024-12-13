@@ -20,11 +20,11 @@ const App = () => {
     <div>
       {/* <State/> */}
       {/* <UseEffects /> */}
-      {/* <Catfacts/> */}
+      <Catfacts/>
       {/* <Events /> */}
       {/* <Axios/> */}
       {/* <Intervals/> */}
-      {/* <Genderize/> */}
+      <Genderize/>
       <Agify/>
       </div>
     </QueryClientProvider>
