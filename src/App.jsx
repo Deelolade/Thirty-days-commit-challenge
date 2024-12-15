@@ -8,6 +8,8 @@ import Intervals from './components/Intervals'
 import Genderize from './components/Genderize'
 import State from './components/State'
 import Agify from './components/Agify'
+import Template from './components/Template'
+
 
 const client = new QueryClient({
   defaultOptions: {
@@ -20,12 +22,13 @@ const App = () => {
       <div>
         {/* <State/> */}
         {/* <UseEffects /> */}
-        <Catfacts />
+        {/* <Catfacts /> */}
         {/* <Events /> */}
         {/* <Axios/> */}
         {/* <Intervals/> */}
-        <Genderize />
-        <Agify />
+        {/* <Genderize /> */}
+        {/* <Agify /> */}
+        <Template/>
       </div>
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
         <div className="bg-white p-8 rounded-lg shadow-md max-w-sm w-full">
@@ -38,6 +41,7 @@ const App = () => {
           </button>
         </div>
       </div>
+      
     </QueryClientProvider>
   )
 }
