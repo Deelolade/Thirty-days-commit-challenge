@@ -9,6 +9,7 @@ import { GoKebabHorizontal } from "react-icons/go";
 
 const Navbar = () => {
     const [User, setUser] = useState([])
+    const [selectedItem, setSelectedItem] = useState("Patients")
     const [isLoading, setIsLoading] = useState(true)
     const ApiFetch = async () => {
         try {
@@ -20,11 +21,13 @@ const Navbar = () => {
             console.error('Error fetching data:', error);
             setIsLoading(false); // Stop loading on error as well
         }
-
     }
     useEffect(() => {
         ApiFetch()
     }, [])
+    const handleClick = (itemName) => {
+        setSelectedItem(itemName); // Update selected item
+    };
     return (
         <div>
             <nav className='flex w-[100%] h-[8vh] justify-between items-center px-12 bg-white rounded-[50px] mx-auto mb-8 '>
@@ -32,14 +35,17 @@ const Navbar = () => {
                     <h4 className='font-sans font-bold'>Tech<span className='text-green-500'>.</span>Care</h4>
                 </div>
                 <ul className='nav-items flex w-[50%] justify-evenly  items-center font-semibold font-sans'>
-                    <li><a href="" className='flex items-center  hover:bg-green-300 py-2 px-3 rounded-full transition duration-300'><GoHome className='text-xl mx-2 my-1 ' />Overview</a></li>
-                    <li><a href="" className='flex items-center  hover:bg-green-300 py-2 px-3 rounded-full transition duration-300'><MdOutlinePeopleAlt className='text-xl mx-2 my-1 ' />Patients</a></li>
-                    <li><a href="" className='flex items-center  hover:bg-green-300 py-2 px-3 rounded-full transition duration-300'><FiCalendar className='text-xl mx-2 my-1 ' />Schedule</a></li>
-                    <li><a href="" className='flex items-center  hover:bg-green-300 py-2 px-3 rounded-full transition duration-300'> <FiMessageSquare className='text-xl mx-2 my-1 ' />Message</a></li>
-                    <li><a href="" className='flex items-center  hover:bg-green-300 py-2 px-3 rounded-full transition duration-300'><BsCreditCard className='text-xl mx-2 my-1 ' />Transactions</a></li>
+                    <li><a href="" className={`flex items-center py-2 px-3 rounded-full transition duration-300 ${selectedItem === 'Overview' ? 'bg-green-300' : ''} 
+                    hover:bg-green-200`} onClick={() => handleClick("Overview")}><GoHome className='text-xl mx-2 my-1 ' />Overview</a></li>
+                    <li><a href="" className={`flex items-center py-2 px-3 rounded-full transition duration-300 ${selectedItem === 'Patients' ? 'bg-green-300' : ''} 
+                    hover:bg-green-200`} onClick={() => handleClick("Patients")}><MdOutlinePeopleAlt className='text-xl mx-2 my-1 ' />Patients</a></li>
+                    <li><a href="" className={`flex items-center py-2 px-3 rounded-full transition duration-300 ${selectedItem === 'Schedule' ? 'bg-green-300' : ''} 
+                    hover:bg-green-200`} onClick={() => handleClick("Schedule")}><FiCalendar className='text-xl mx-2 my-1 ' />Schedule</a></li>
+                    <li><a href="" className={`flex items-center py-2 px-3 rounded-full transition duration-300 ${selectedItem === 'Message' ? 'bg-green-300' : ''} 
+                    hover:bg-green-200`} onClick={() => handleClick("Message")}> <FiMessageSquare className='text-xl mx-2 my-1 ' />Message</a></li>
+                    <li><a href="" className={`flex items-center py-2 px-3 rounded-full transition duration-300 ${selectedItem === 'Transactions' ? 'bg-green-300' : ''} 
+                    hover:bg-green-200`} onClick={() => handleClick("Transactions")}><BsCreditCard className='text-xl mx-2 my-1 ' />Transactions</a></li>
                 </ul>
-
-
                 {
                     User && User.length > 0 ?
                         User.map((user, index) => {
@@ -61,9 +67,7 @@ const Navbar = () => {
                             )
                         }) : <p> Wait a minute.... </p>
                 }
-
             </nav>
-
         </div>
     )
 }

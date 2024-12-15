@@ -4,7 +4,7 @@ import "./aside.css";
 import { GoKebabHorizontal } from "react-icons/go";
 
 
-const Aside = () => {
+const Aside = ({ onUserClick,selectedUser }) => {
     const [Users, setUsers] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const ApiFetch = async () => {
@@ -13,6 +13,10 @@ const Aside = () => {
             const response = await Apilink.json();
             setUsers(response.results);
             setIsLoading(false); // Data fetched, stop loading
+
+            if (response.results && response.results.length > 0) {
+                onUserClick(response.results[0]); // 🔥 2️⃣ Automatically select the first user
+            }
         } catch (error) {
             console.error('Error fetching data:', error);
             setIsLoading(false); // Stop loading on error as well
@@ -37,9 +41,11 @@ const Aside = () => {
                     {
                         Users && Users.length > 0 ?
                             Users.map((user, index) => {
+                                const isSelected = selectedUser && selectedUser.id === user.id;
                                 return (
                                     <div key={index}>
-                                        <li className='h-24 flex items-center justify-between px-4 bg-white hover:bg-green-200'>
+                                        <li className={`h-24 flex items-center justify-between px-4 bg-white hover:bg-green-200 ${isSelected ? 'bg-green-300' : ''}`}
+                                            onClick={() => onUserClick(user)} >
                                             <div className="text flex justify-between items-center">
                                                 <img src={user.picture.thumbnail} alt="" className='rounded-full mr-6 h-16 w-16 object-fixed' />
                                                 <div className="">

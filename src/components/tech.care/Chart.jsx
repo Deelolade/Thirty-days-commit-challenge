@@ -70,7 +70,7 @@ const LineChart = () => {
     }, []);
 
     return (
-        <div className="p-6 max-w-4xl  bg-purple-100 rounded-lg ">
+        <div className="p-6 max-w-4xl h-[40vh] w-[50vw] bg-purple-100 rounded-lg ">
             <div className=" flex justify-between">
             <h2 className="text-2xl font-bold text-left mb-4">Blood Pressure</h2>
             <p className='flex leading-3 '>Last 6 Months <IoIosArrowDown className='ml-2'/></p>
