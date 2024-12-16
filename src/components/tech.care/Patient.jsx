@@ -8,7 +8,7 @@ import { FaLocationArrow } from "react-icons/fa6";
 
 const Patient = ({ user }) => {
     if (!user) {
-        return <p>Select a user to see details</p>; // Fallback UI when no user is selected
+        return <p className='text-center font-bold mx-auto'>Select a user to see details</p>; // Fallback UI when no user is selected
     }
     const rawDate = user.dob.date
     const formattedDate = rawDate.split('T')[0]
