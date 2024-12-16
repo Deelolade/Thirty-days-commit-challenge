@@ -9,7 +9,8 @@ import Genderize from './components/Genderize'
 import State from './components/State'
 import Agify from './components/Agify'
 import Template from './components/Template'
-
+import { MyProvider } from './usecontext/Context'
+import User from './usecontext/User'
 
 const client = new QueryClient({
   defaultOptions: {
@@ -19,6 +20,9 @@ const client = new QueryClient({
 const App = () => {
   return (
     <QueryClientProvider client={client}>
+      <MyProvider>
+        <User/>
+        </MyProvider>
       <div>
         {/* <State/> */}
         {/* <UseEffects /> */}
@@ -30,18 +34,6 @@ const App = () => {
         {/* <Agify /> */}
         <Template/>
       </div>
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-        <div className="bg-white p-8 rounded-lg shadow-md max-w-sm w-full">
-          <h1 className="text-3xl font-bold text-gray-800">Welcome to Tailwind CSS!</h1>
-          <p className="mt-4 text-gray-600">
-            Tailwind CSS makes it easy to build beautiful user interfaces with utility-first classes.
-          </p>
-          <button className="mt-6 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition">
-            Click Me
-          </button>
-        </div>
-      </div>
-      
     </QueryClientProvider>
   )
 }
