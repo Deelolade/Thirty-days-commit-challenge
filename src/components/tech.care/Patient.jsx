@@ -12,7 +12,6 @@ const Patient = ({ user }) => {
     }
     const rawDate = user.dob.date
     const formattedDate = rawDate.split('T')[0]
-    console.log(formattedDate)
     return (
         <div>
             <section className='w-[22vw] bg-white h-[75vh] p-4 pt-7  rounded-xl mb-3'>

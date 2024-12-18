@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react'
 import UseEffects from './components/UseEffects'
 import Catfacts from './components/Catfacts'
 import Events from './components/Events'
@@ -11,6 +10,8 @@ import Agify from './components/Agify'
 import Template from './components/Template'
 import { MyProvider } from './usecontext/Context'
 import User from './usecontext/User'
+import Login from './usecontext/Login'
+
 
 const client = new QueryClient({
   defaultOptions: {
@@ -21,8 +22,9 @@ const App = () => {
   return (
     <QueryClientProvider client={client}>
       <MyProvider>
-        <User/>
-        </MyProvider>
+        <User />
+        <Login/>
+      </MyProvider>
       <div>
         {/* <State/> */}
         {/* <UseEffects /> */}
@@ -32,7 +34,7 @@ const App = () => {
         {/* <Intervals/> */}
         {/* <Genderize /> */}
         {/* <Agify /> */}
-        <Template/>
+        {/* <Template /> */}
       </div>
     </QueryClientProvider>
   )
